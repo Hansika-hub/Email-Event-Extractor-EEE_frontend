@@ -30,3 +30,7 @@ Turn event invitations in unread Gmail messages into Google Calendar entries. Si
 4. Open the Vercel URL, sign in, and scan with a test invitation marked unread. Review the extracted details before saving it to Calendar.
 
 For layout changes, serve the files locally with `python3 -m http.server 8000`. To test the full sign-in and scan flow locally, authorize `http://localhost:8000` in Google Cloud and use a local proxy for `/api` or configure the frontend to call the backend directly with that origin allowed in CORS.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
