@@ -98,6 +98,25 @@
 
   <script src="https://apis.google.com/js/platform.js" defer></script>
   <script src="Proemail.js" defer></script>
+<dialog id="calendar-review" class="modal" style="margin:auto">
+  <form>
+    <h3>Add to Google Calendar</h3>
+    <div class="form-row">
+      <label>Event name <input name="title" required></label>
+      <label>Location <input name="location"></label>
+      <label>Date <input name="date" type="date" required></label>
+      <label><input type="checkbox" name="allDay"> All-day event</label>
+      <label>Start time <input name="time" type="time" required></label>
+      <label>Timezone <input name="zone" required></label>
+      <label>Duration in minutes (timed events) <input type="number" name="duration" value="60" min="1" max="1440" required></label>
+      <label>Remind me (minutes before start) <input type="number" name="reminder" value="15" min="0" max="40320" required></label>
+    </div>
+    <button type="button" class="btn" data-close>Close</button>
+    <button type="submit" class="btn btn-primary">Save to Calendar</button>
+    <output role="status"></output>
+  </form>
+</dialog>
+<script src="calendar.js" defer></script>
 </body>
 </html>
 
