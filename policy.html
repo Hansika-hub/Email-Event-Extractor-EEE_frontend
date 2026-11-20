@@ -113,9 +113,11 @@
 <h2>Use of Gmail Data</h2>
 <p>Our app uses Gmail API access to extract event-related details like date, time, and venue to set reminders for you. We do not store, share, or use your Gmail content beyond this purpose.</p>
 
+<p>When you choose Save to Calendar, the reviewed event and reminder are sent to your Google Calendar. The backend stores extracted event fields. If the operator enables Gemini fallback, relevant email text is sent to Gemini for extraction.</p>
 <h3>OAuth Scopes Used</h3>
 <ul>
   <li><code>https://www.googleapis.com/auth/gmail.readonly</code> - Used to read only event-related email content.</li>
+  <li><code>https://www.googleapis.com/auth/calendar.events.owned</code> - Adds reviewed events to your own calendar.</li>
   <li><code>https://www.googleapis.com/auth/userinfo.email</code> - Used to identify your account.</li>
 </ul>
 
