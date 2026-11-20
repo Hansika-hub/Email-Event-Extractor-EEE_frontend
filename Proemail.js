@@ -66,6 +66,7 @@ function updateLoginUI() {
 
 // Handle logout
 function logout() {
+  calendarGrant = null;
   accessToken = null;
   backendToken = null;
   idToken = null;
@@ -253,7 +254,7 @@ async function fetchAllUnreadEmails() {
     
     renderEvents(allEvents);
     updateSummary(allEvents);
-    scheduleNotifications(allEvents);
+    // Reviewed email reminders are delivered by Google Calendar.
 
   } catch (err) {
     console.error("Fetching emails failed:", err);
@@ -323,13 +324,25 @@ function renderEvents(events) {
     deleteBtn.textContent = "🗑️";
     deleteBtn.addEventListener("click", () => handleDeleteEvent(event, card));
 
-    card.innerHTML = `
-      <div style="color: #8b5cf6; font-weight: bold;">${event.type || "Event"}</div>
-      <h2>${event.event_name || "No Title"}</h2>
-      <p>📅 ${event.date || "N/A"}</p>
-      <p>⏰ ${event.time || "N/A"}</p>
-      <p>📍 ${event.venue || "N/A"}</p>
-    `;
+    for (const [tag, value] of [
+      ["div", event.type || "Event"], ["h2", event.event_name || "No Title"],
+      ["p", "📅 " + (event.date || "N/A")], ["p", "⏰ " + (event.time || "N/A")],
+      ["p", "📍 " + (event.venue || "N/A")],
+    ]) {
+      const el = document.createElement(tag);
+      el.textContent = value;
+      card.appendChild(el);
+    }
+    if (event.message_id) {
+      const trace = document.createElement("small");
+      trace.textContent = (event.trace || []).join(" → ");
+      const add = document.createElement("button");
+      add.type = "button";
+      add.className = "btn btn-primary";
+      add.textContent = "Review and add to Calendar";
+      add.onclick = () => openCalendarReview(event);
+      card.append(trace, document.createElement("br"), add);
+    }
 
     card.prepend(checkbox);
     card.appendChild(deleteBtn);
