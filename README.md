@@ -33,4 +33,4 @@ For layout changes, serve the files locally with `python3 -m http.server 8000`. 
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](https://github.com/Hansika-hub/Email-Event-Extractor-EEE_frontend/blob/main/LICENSE.txt)
